@@ -25,6 +25,8 @@ router.post(
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
+    console.log("Existing", existingUser);
+    
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }

@@ -28,3 +28,23 @@ Add ip to /etc/hosts like:
 '''
 ip ticketing.dev
 '''
+
+
+Quick Fixes:
+
+Before build images locally, run:
+'''
+    eval $(minikube docker-env)
+'''
+
+Mongo Port Forwarding:
+'''
+    kubectl port-forward mongo-depl-7f7d447867-xl5kv --namespace default 27017:27017
+'''
+
+Trouble build docker image:
+'''
+    docker build --network=host .
+'''
+
+Problems logging in, make sure to connect to the client using HTTPS

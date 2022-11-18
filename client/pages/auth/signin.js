@@ -18,19 +18,19 @@ export default () => {
     }
 
     return <form onSubmit={onSubmit}>
-        <h1>Sign In</h1>
+        <h1>Log In</h1>
 
         <div className="form-group">
-            <label>E-mail Address</label>
+            <label>E-mail</label>
             <input value={email} onChange={e => setEmail(e.target.value)} className="form-control" />
         </div>
         <div className="form-group">
-            <label>Password</label>
+            <label>Senha</label>
             <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" />
         </div>
 
         {errors}
 
-        <button className="btn btn-primary">Sign In</button>
+        <button className="btn btn-primary">Entrar</button>
     </form>
 }

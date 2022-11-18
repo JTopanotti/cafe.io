@@ -4,8 +4,11 @@ import { Password } from '../services/password';
 // An interface that describes the properties
 // that are requried to create a new User
 interface UserAttrs {
+  username: string;
   email: string;
   password: string;
+  mailingAddress: string;
+  monthlySubscription: boolean;
 }
 
 // An interface that describes the properties
@@ -17,12 +20,19 @@ interface UserModel extends mongoose.Model<UserDoc> {
 // An interface that describes the properties
 // that a User Document has
 interface UserDoc extends mongoose.Document {
+  username: string;
   email: string;
   password: string;
+  mailingAddress: string;
+  monthlySubscription: boolean;
 }
 
 const userSchema = new mongoose.Schema(
   {
+    username: {
+      type: String,
+      required: true
+    },
     email: {
       type: String,
       required: true
@@ -30,6 +40,12 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
+    },
+    mailingAddress: {
+      type: String
+    },
+    monthlySubscription: {
+      type: Boolean
     }
   },
   {

@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: jontopanotti/auth
+    - image: jontopanotti/cafeio-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,20 +16,28 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: jontopanotti/client
+    - image: jontopanotti/cafeio-orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: jontopanotti/cafeio-products
+      context: products
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: jontopanotti/cafeio-client
       context: client
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: '**/*.js'
-            dest: .
-    - image: jontopanotti/tickets
-      context: tickets
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
             dest: .
 

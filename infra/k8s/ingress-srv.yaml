@@ -4,31 +4,37 @@ metadata:
   name: ingress-service
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
-    #cert-manager.io/issuer: ca-cert-issuer
 spec:
   rules:
-  - host: ticketing.org
+  - host: cafe.io
     http:
       paths:
       - path: /api/users/?(.*)
         pathType: Prefix
         backend:
           service:
-            name: auth-srv
+            name: cafeio-auth-srv
             port:
               number: 3000
-      - path: /api/tickets/?(.*)
+      - path: /api/products/?(.*)
         pathType: Prefix
         backend:
           service:
-            name: tickets-srv
+            name: cafeio-products-srv
+            port:
+              number: 3000
+      - path: /api/orders/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: cafeio-orders-srv
             port:
               number: 3000
       - path: /?(.*)
         pathType: Prefix
         backend:
           service:
-            name: client-srv
+            name: cafeio-client-srv
             port:
               number: 3000
   ingressClassName: nginx
