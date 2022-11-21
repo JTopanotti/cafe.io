@@ -7,7 +7,7 @@ import { errorHandler, NotFoundError, currentUser } from '@somethingorg/common';
 import { showCartByUserRouter } from './routes/cart/show-by-user';
 import { addToCartRouter } from './routes/cart/add-to-cart';
 import { updateCartOrder } from './routes/cart/update'
-import { showProductsOfCartRouter } from './routes/cart/show-products-of-cart';
+import { showCartWithProducts } from './routes/cart/show-with-products';
 
 import { showOrderRouter } from './routes/order/show';
 import { newOrderRouter } from './routes/order/new';
@@ -28,7 +28,7 @@ app.use(currentUser);
 app.use(showCartByUserRouter);
 app.use(addToCartRouter);
 app.use(updateCartOrder);
-app.use(showProductsOfCartRouter);
+app.use(showCartWithProducts);
 
 app.use(showOrderRouter);
 app.use(newOrderRouter);

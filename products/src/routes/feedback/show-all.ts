@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { requireAuth } from '@somethingorg/common';
-import { Feedback } from '@somethingorg/cafeio-models';
+import { Feedback } from '../../models/feedback';
 
 const router = express.Router();
 

@@ -6,7 +6,7 @@ export default ({ product, onClickCallback }) => {
     }
 
     return (
-        <div key={product.id} className="card" style={style}>
+        <div className="card" style={style}>
             <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">{product.description}</p>

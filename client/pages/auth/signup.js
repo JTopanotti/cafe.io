@@ -3,7 +3,7 @@ import useRequest from '../../hooks/use-request';
 import Router from 'next/router';
 
 export default () => {
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('Test 1');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [mailingAddress, setMailingAddress] = useState('');

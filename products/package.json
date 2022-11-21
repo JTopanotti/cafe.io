@@ -7,7 +7,6 @@
     "start": "ts-node-dev --respawn --transpile-only src/index.ts"
   },
   "dependencies": {
-    "@somethingorg/cafeio-models": "^1.0.2",
     "@somethingorg/common": "^1.0.2",
     "@types/cookie-session": "^2.0.43",
     "@types/express": "^4.17.13",

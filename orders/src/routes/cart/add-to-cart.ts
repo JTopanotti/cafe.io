@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { Cart } from '@somethingorg/cafeio-models';
-import { Order } from '@somethingorg/cafeio-models';
+import { Cart } from '../../models/cart';
+import { Order } from '../../models/order';
 
 import { validateRequest, requireAuth } from '@somethingorg/common';
 
@@ -23,9 +23,13 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { productId, quantity }  = req.body;
+    console.log("Req body:",req.body);
+    
     const userId = req.currentUser!!.id;
 
     let orders = await Order.find({ userId, status: "OPEN" });
+    console.log("Orders:",orders);
+    
     
     if (orders.length === 0) {
       const orderModel = Order.build({ 
@@ -42,6 +46,7 @@ router.post(
 
     let carts = await Cart.find({ orderId: orders[0]._id, productId });
     let cart = (carts.length >= 0) ? carts[0] : null;
+    console.log("Cart:", cart);
 
     if (!cart) {
       const cartModel = Cart.build({ 

@@ -5,7 +5,7 @@ import {
   NotFoundError,
   requireAuth
 } from '@somethingorg/common';
-import { Cart } from '@somethingorg/cafeio-models';
+import { Cart } from '../../models/cart';
 
 const router = express.Router();
 

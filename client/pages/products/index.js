@@ -21,7 +21,7 @@ export default (pageProps) => {
         };
 
         const resp = await axios.post('/api/orders/cart/add', payload);
-        pageProps.onUpdateCart(resp.data)
+        pageProps.onUpdateCart(resp.data?.length);
     };
     
     useEffect(() => {

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Router from 'next/router';
 
-export default ({ currentUser, cart }) => {
+export default ({ currentUser, cartLength }) => {
+    console.log("CartLength", cartLength);
     const userLinks = [
         !currentUser && { label: 'Sign Up', href: '/auth/signup' },
         !currentUser && { label: 'Sign In', href: '/auth/signin' },
@@ -53,7 +54,7 @@ export default ({ currentUser, cart }) => {
         <div className='d-flex justify-content-end'>
             { currentUser && <button onClick={() => Router.push('/cart')} 
                                      className='btn btn-error' 
-                                     style={styles.cart}>Carrinho: {cart.length}</button> }
+                                     style={styles.cart}>Carrinho: {cartLength}</button> }
             <ul className='nav d-flex align-items-center'>
                 { userLinks }
             </ul>

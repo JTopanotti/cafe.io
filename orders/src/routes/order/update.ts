@@ -5,7 +5,7 @@ import {
   NotFoundError,
   requireAuth
 } from '@somethingorg/common';
-import { Order } from '@somethingorg/cafeio-models';
+import { Order } from '../../models/order';
 
 const router = express.Router();
 
@@ -18,10 +18,12 @@ router.put(
       .withMessage('User Id is required'),
     body('total')
       .isNumeric()
-      .withMessage('Total shoudl be numeric'),
+      .withMessage('Total should be numeric'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    console.log("Update", req.body);
+    
     const order = await Order.findById(req.params.id);
 
     if (!order) {
@@ -29,7 +31,7 @@ router.put(
     }
 
     order.set({ 
-      cartId: req.body.cartId, 
+      userId: req.body.userId, 
       total: req.body.total, 
       date: req.body.date, 
       status: req.body.status, 

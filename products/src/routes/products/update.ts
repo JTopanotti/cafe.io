@@ -5,7 +5,7 @@ import {
   NotFoundError,
   requireAuth,
 } from '@somethingorg/common';
-import { Product } from '@somethingorg/cafeio-models';
+import { Product } from '../../models/product';
 
 const router = express.Router();
 

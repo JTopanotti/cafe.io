@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { Feedback } from '@somethingorg/cafeio-models';
+import { Feedback } from '../../models/feedback';
 
 import { validateRequest, requireAuth, NotFoundError } from '@somethingorg/common';
 

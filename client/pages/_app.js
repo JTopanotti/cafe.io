@@ -4,13 +4,13 @@ import buildClient from '../api/build-client';
 import Header from '../components/header';
 
 const AppComponent = ({ Component, pageProps, currentUser, cartResp }) => {
-    const [cart, setCart] = useState(cartResp);
+    const [cartLength, setCartLength] = useState(cartResp);
 
     return ( 
         <div>
-            <Header currentUser={currentUser} cart={cart} />
+            <Header currentUser={currentUser} cartLength={cartLength} />
             <div style={{padding: "30px"}}>
-                <Component {...pageProps} onUpdateCart={setCart} />
+                <Component {...pageProps} onUpdateCart={setCartLength} />
             </div>
         </div>
     );
@@ -21,7 +21,6 @@ AppComponent.getInitialProps = async appCtx => {
     const currentUserResp = await client.get('/api/users/currentuser');
     const currentUser = currentUserResp.data.currentUser;
     let cart = [];
-    console.log(currentUser);
 
     if (currentUser) {
         const userCartResp = await client.get('/api/orders/cart')
@@ -39,7 +38,7 @@ AppComponent.getInitialProps = async appCtx => {
     return {
         pageProps,
         ...currentUserResp.data,
-        cartResp: cart
+        cartResp: cart.length
     };      
 }
 
