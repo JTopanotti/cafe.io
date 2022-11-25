@@ -8,11 +8,12 @@ export default () => {
     const [password, setPassword] = useState('');
     const [mailingAddress, setMailingAddress] = useState('');
     const [monthlySubscription, setMonthlySubscription] = useState(false);
+    const [admin, setAdmin] = useState(false);
     const { doRequest, errors } = useRequest({
         url: '/api/users/signup', 
         method: 'post', 
-        body: { username, email, password, mailingAddress, monthlySubscription },
-        onSuccess: () => Router.push('/')
+        body: { username, email, password, mailingAddress, monthlySubscription, admin },
+        onSuccess: () => Router.push('/products')
     });
 
     const onSubmit = async (event) => {
@@ -43,6 +44,10 @@ export default () => {
         <div className="form-group">
             <label>Inscrição Mensal:</label>
             <input style={{marginLeft: "10px"}} value={monthlySubscription} onChange={e => setMonthlySubscription(!monthlySubscription)} type="checkbox" />
+        </div>
+        <div className="form-group">
+            <label>Conta Admin:</label>
+            <input style={{marginLeft: "10px"}} value={admin} onChange={e => setAdmin(!admin)} type="checkbox" />
         </div>
 
         {errors}

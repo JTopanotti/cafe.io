@@ -1,7 +1,7 @@
 import buildClient from "../api/build-client";
 
 const LandingPage = ({currentUser}) => {
-    return currentUser ? <h1>You are Signed In</h1> : <h1>You are Not Signed In</h1>
+    return currentUser ? <h1>Você está logado</h1> : <h1>Você está deslogado</h1>
 }; 
 
 LandingPage.getInitialProps = async (ctx) => {

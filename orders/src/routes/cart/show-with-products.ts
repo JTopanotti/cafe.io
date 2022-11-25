@@ -20,8 +20,6 @@ router.get('/api/orders/cart/products', requireAuth, async (req: Request, res: R
   if (!carts || carts.length === 0) {
     throw new NotFoundError();
   }
-  console.log("Carts", carts);
-  
 
   for (let item of carts) {
     const resp = await axios.get(

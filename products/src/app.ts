@@ -1,6 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
-import { json } from 'body-parser';
+import { json, urlencoded } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@somethingorg/common';
 
@@ -8,14 +8,15 @@ import { newProductRouter } from './routes/products/new';
 import { showProductRouter } from './routes/products/show';
 import { updateProductRouter } from './routes/products/update';
 import { showAllProductsRouter } from './routes/products/show-all';
+import { showProductPhotoRouter } from './routes/products/show-photo';
 
 import { newFeedbackRouter } from './routes/feedback/new';
 import { showAllFeedbackRouter } from './routes/feedback/show-all';
 
-
 const app = express();
 app.set('trust proxy', true);
 app.use(json());
+app.use(urlencoded());
 app.use(
   cookieSession({
     signed: false,
@@ -28,6 +29,7 @@ app.use(newProductRouter);
 app.use(showProductRouter);
 app.use(updateProductRouter);
 app.use(showAllProductsRouter);
+app.use(showProductPhotoRouter);
 
 app.use(newFeedbackRouter);
 app.use(showAllFeedbackRouter);

@@ -1,22 +1,33 @@
+import Link from 'next/link';
 
-export default ({ product, onClickCallback }) => {
-
+export default ({ product, onClickAddToCart, onClickRemove }) => {
     const style = {
-        margin: "10px"
+        container: {
+            margin: "10px"
+        },
+        button: {
+            backgroundColor: "red"
+        }
     }
 
     return (
-        <div className="card" style={style}>
-            <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
-                <p className="card-text">{product.description}</p>
-                { onClickCallback 
-                    &&  <button className="btn btn-success" 
-                                onClick={onClickCallback.bind(this, product.id)}>
-                                    Adicionar ao Carrinho
-                        </button> }
-                
+        <Link href={{pathname: '/products/info', query: {id: product.id}}}>
+            <div className="card" style={style}>
+                <div className="card-body">
+                    <h5 className="card-title">{product.name}</h5>
+                    <p className="card-text">{product.description}</p>
+                    { onClickAddToCart 
+                        &&  <button className="btn btn-success" 
+                                    onClick={onClickAddToCart.bind(this, product.id)}>
+                                        Adicionar ao Carrinho
+                            </button> }
+                    { onClickRemove 
+                        &&  <button className='btn btn-primary' style={style.button}
+                                    onClick={onClickRemove.bind(this, product.id)}>
+                                        Remover 
+                            </button> }
+                </div>
             </div>
-        </div>
+        </Link>
     );
 };

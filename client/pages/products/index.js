@@ -4,7 +4,7 @@ import Router from 'next/router';
 import axios from 'axios';
 import ProductCard from '../../components/product-card';
 
-export default (pageProps) => {
+export default ({ currentUser, onUpdateCart }) => {
     const [ products, setProducts ] = useState([{}]);
     const { doRequest, errors } = useRequest({
         url: '/api/products', 
@@ -21,20 +21,20 @@ export default (pageProps) => {
         };
 
         const resp = await axios.post('/api/orders/cart/add', payload);
-        pageProps.onUpdateCart(resp.data?.length);
+        onUpdateCart(resp.data?.length);
     };
     
     useEffect(() => {
         doRequest();
     }, []);
 
-    const listItems = products.map((p) => <ProductCard product={p} onClickCallback={addToCart} />);
+    const listItems = products.map((p) => <ProductCard product={p} onClickAddToCart={addToCart} />);
 
     return (<div>
-        <button
+        {currentUser && currentUser.admin && <button
             type="button" 
             className="btn btn-primary" 
-            onClick={() => Router.push('/products/register')}>Adicionar produto</button>
+            onClick={() => Router.push('/products/info')}>Adicionar produto</button>}
         { listItems }
     </div>)
 }

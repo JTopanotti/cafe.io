@@ -15,14 +15,16 @@ export default ({ url, method, body, onSuccess }) => {
 
             return resp.data;
         } catch (e) {
-            setErrors(
-                <div className='alert alert-danger'>
-                    <h4>Ooops. Something went wrong...</h4>
-                    <ul className='my-0'>
-                        {e.response.data.errors.map(e => <li key={e.message}>{e.message}</li>)}
-                    </ul>
-                </div>
-            );
+            if (e.response?.data?.errors) {
+                setErrors(
+                    <div className='alert alert-danger'>
+                        <h4>Ooops. Something went wrong...</h4>
+                        <ul className='my-0'>
+                            {e.response.data.errors.map(e => <li key={e.message}>{e.message}</li>)}
+                        </ul>
+                    </div>
+                );
+            }
         }
     };
 

@@ -8,13 +8,14 @@ const router = express.Router();
 router.get('/api/orders/cart', requireAuth, async (req: Request, res: Response) => {
   const userId = req.currentUser?.id;
 
-  const order = await Order.find({ userId, status: "OPEN" });
-  if (!order) {
-    throw new NotFoundError();
+  const orders = await Order.find({ userId, status: "OPEN" });
+  if (!orders || orders.length === 0) {
+    res.send(404);
   }
+  console.log(orders);
 
-  const cart = await Cart.find({ orderId: order[0]._id });
-  if (!cart) {
+  const cart = await Cart.find({ orderId: orders[0]._id });
+  if (!cart || cart.length === 0) {
     throw new NotFoundError();
   }
 

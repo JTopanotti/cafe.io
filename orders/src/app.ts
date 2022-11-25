@@ -8,6 +8,7 @@ import { showCartByUserRouter } from './routes/cart/show-by-user';
 import { addToCartRouter } from './routes/cart/add-to-cart';
 import { updateCartOrder } from './routes/cart/update'
 import { showCartWithProducts } from './routes/cart/show-with-products';
+import { removeProductRouter } from './routes/cart/remove-product';
 
 import { showOrderRouter } from './routes/order/show';
 import { newOrderRouter } from './routes/order/new';
@@ -29,6 +30,7 @@ app.use(showCartByUserRouter);
 app.use(addToCartRouter);
 app.use(updateCartOrder);
 app.use(showCartWithProducts);
+app.use(removeProductRouter);
 
 app.use(showOrderRouter);
 app.use(newOrderRouter);

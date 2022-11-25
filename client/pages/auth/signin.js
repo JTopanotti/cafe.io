@@ -9,7 +9,7 @@ export default () => {
         url: '/api/users/signin', 
         method: 'post', 
         body: { email, password },
-        onSuccess: () => Router.push('/')
+        onSuccess: () => Router.push('/products')
     });
 
     const onSubmit = async (event) => {

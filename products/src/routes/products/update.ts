@@ -17,9 +17,6 @@ router.put(
       .trim()
       .notEmpty()
       .withMessage('Name is required'),
-    body('registrationDate')
-      .notEmpty()
-      .withMessage('Registration Date is required'),
     body('price')
       .isFloat({ gt: 0 })
       .withMessage('Price is required'),
@@ -35,9 +32,10 @@ router.put(
     product.set({
       name: req.body.name, 
       description: req.body.description, 
-      registrationDate: req.body.registrationDate, 
+      registrationDate: product.registrationDate, 
       price: req.body.price, 
-      quantity: req.body.quantity
+      quantity: req.body.quantity,
+      photoId: (req.body.photoId) ? req.body.photoId : product.photoId
     });
     await product.save();
 

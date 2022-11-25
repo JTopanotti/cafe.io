@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId, Schema } from 'mongoose';
 
 // An interface that describes the properties
 // that are requried to create a new Product
@@ -8,6 +8,7 @@ interface ProductAttrs {
   registrationDate: Date;
   price: number;
   quantity: number;
+  photoId: string;
 }
 
 // An interface that describes the properties
@@ -24,6 +25,7 @@ interface ProductDoc extends mongoose.Document {
   registrationDate: Date;
   price: number;
   quantity: number;
+  photoId: string;
 }
 
 const ProductSchema = new mongoose.Schema(
@@ -46,6 +48,7 @@ const ProductSchema = new mongoose.Schema(
     quantity: {
       type: Number
     },
+    photoId:{ type: String }
   },
   {
     toJSON: {

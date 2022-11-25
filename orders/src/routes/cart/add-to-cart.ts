@@ -23,13 +23,8 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { productId, quantity }  = req.body;
-    console.log("Req body:",req.body);
-    
     const userId = req.currentUser!!.id;
-
     let orders = await Order.find({ userId, status: "OPEN" });
-    console.log("Orders:",orders);
-    
     
     if (orders.length === 0) {
       const orderModel = Order.build({ 
@@ -41,19 +36,23 @@ router.post(
       });
       await orderModel.save();
 
-      orders = await Order.find({ userId });
+      orders = await Order.find({ userId, status: "OPEN" });
     }
-
+    
     let carts = await Cart.find({ orderId: orders[0]._id, productId });
     let cart = (carts.length >= 0) ? carts[0] : null;
-    console.log("Cart:", cart);
 
     if (!cart) {
+      console.log("SDg", orders[0]._id);
+      console.log("SDg", typeof orders[0]._id);
+      
       const cartModel = Cart.build({ 
         orderId: orders[0]._id, 
         productId, 
         quantity, 
       });
+      console.log("Cart Model", cartModel);
+      
       await cartModel.save();
     } else {
       const cart = carts[0];

@@ -9,6 +9,7 @@ interface UserAttrs {
   password: string;
   mailingAddress: string;
   monthlySubscription: boolean;
+  admin: boolean;
 }
 
 // An interface that describes the properties
@@ -25,6 +26,7 @@ interface UserDoc extends mongoose.Document {
   password: string;
   mailingAddress: string;
   monthlySubscription: boolean;
+  admin: boolean;
 }
 
 const userSchema = new mongoose.Schema(
@@ -45,6 +47,9 @@ const userSchema = new mongoose.Schema(
       type: String
     },
     monthlySubscription: {
+      type: Boolean
+    },
+    admin: {
       type: Boolean
     }
   },

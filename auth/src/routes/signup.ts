@@ -24,22 +24,22 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { username, email, password, mailingAddress, monthlySubscription } = req.body;
-
+    const { username, email, password, mailingAddress, monthlySubscription, admin } = req.body;
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       throw new BadRequestError('Email in use');
     }
 
-    const user = User.build({ username, email, password, mailingAddress, monthlySubscription });
+    const user = User.build({ username, email, password, mailingAddress, monthlySubscription, admin });
     await user.save();
 
     // Generate JWT
     const userJwt = jwt.sign(
       {
         id: user.id,
-        email: user.email
+        email: user.email,
+        admin: user.admin
       },
       process.env.JWT_KEY!
     );

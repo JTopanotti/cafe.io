@@ -10,7 +10,7 @@ const AppComponent = ({ Component, pageProps, currentUser, cartResp }) => {
         <div>
             <Header currentUser={currentUser} cartLength={cartLength} />
             <div style={{padding: "30px"}}>
-                <Component {...pageProps} onUpdateCart={setCartLength} />
+                <Component {...pageProps} currentUser={currentUser} onUpdateCart={setCartLength} />
             </div>
         </div>
     );
