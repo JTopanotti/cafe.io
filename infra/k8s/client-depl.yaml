@@ -15,6 +15,7 @@ spec:
       containers:
         - name: cafeio-client
           image: jontopanotti/cafeio-client
+          #image: us.gcr.io/cafeio-dev/cafeio-client
 ---
 apiVersion: v1
 kind: Service

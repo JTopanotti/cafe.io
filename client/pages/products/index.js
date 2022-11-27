@@ -14,12 +14,12 @@ export default ({ currentUser, onUpdateCart }) => {
         } 
     });
 
-    const addToCart = async (productId) => {
+    const addToCart = async (event, productId) => {
+        event.preventDefault();
         const payload = {
             productId,
             quantity: 1
         };
-
         const resp = await axios.post('/api/orders/cart/add', payload);
         onUpdateCart(resp.data?.length);
     };
@@ -28,12 +28,19 @@ export default ({ currentUser, onUpdateCart }) => {
         doRequest();
     }, []);
 
-    const listItems = products.map((p) => <ProductCard product={p} onClickAddToCart={addToCart} />);
+    let listItems;
+    if (currentUser && !currentUser.admin) {
+        listItems = products.map((p) => <ProductCard product={p} onClickAddToCart={addToCart} />);
+    } else {
+        listItems = products.map((p) => <ProductCard product={p} />);
+    }
+    
 
     return (<div>
         {currentUser && currentUser.admin && <button
             type="button" 
-            className="btn btn-primary" 
+            style={{marginBottom: "10px"}}
+            className="btn btn-success" 
             onClick={() => Router.push('/products/info')}>Adicionar produto</button>}
         { listItems }
     </div>)

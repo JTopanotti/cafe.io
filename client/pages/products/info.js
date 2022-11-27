@@ -3,8 +3,9 @@ import Router from 'next/router';
 import FormData from 'form-data';
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import Link from 'next/link';
 
-const ProductPage = ({}) => {
+const ProductPage = ({currentUser}) => {
     const router = useRouter();
     
     const [id, setId] = useState(undefined);
@@ -144,7 +145,12 @@ const ProductPage = ({}) => {
                     <label>Quantidade</label>
                     <input value={quantity} onChange={e => setQuantity(e.target.value)} type="number" className="form-control" />
                 </div>
-                <button style={{marginTop: "10px"}} className="btn btn-primary">Enviar</button>
+                <div style={styles.container}>
+                    <button style={{marginTop: "10px", marginRight: "10px"}} className="btn btn-primary">Salvar</button>
+                    {id && <Link href={{pathname: '/products/feedback', query: {productId: id}}}> 
+                        <button style={{marginTop: "10px"}} className="btn btn-success">Dar Feedback</button>
+                    </Link>}    
+                </div>
             </div>
             <div style={styles.imageArea}>
                 {imageBase64 && (

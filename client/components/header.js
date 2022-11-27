@@ -17,7 +17,7 @@ export default ({ currentUser, cartLength }) => {
     });
 
     const links = [
-        currentUser  && { label: 'Products', href: '/products' },
+        currentUser  && { label: 'Produtos', href: '/products' },
     ]
     .filter(linkConfig => linkConfig)
     .map(({ label, href }) => {

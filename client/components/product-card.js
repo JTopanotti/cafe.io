@@ -18,7 +18,7 @@ export default ({ product, onClickAddToCart, onClickRemove }) => {
                     <p className="card-text">{product.description}</p>
                     { onClickAddToCart 
                         &&  <button className="btn btn-success" 
-                                    onClick={onClickAddToCart.bind(this, product.id)}>
+                                    onClick={event => onClickAddToCart(event, product.id)}>
                                         Adicionar ao Carrinho
                             </button> }
                     { onClickRemove 

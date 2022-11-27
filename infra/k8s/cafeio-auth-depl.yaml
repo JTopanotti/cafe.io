@@ -16,8 +16,8 @@ spec:
       containers:
         - name: cafeio-auth
           image: jontopanotti/cafeio-auth
-          # image: us.gcr.io/cafeio-dev/cafeio-auth
-          imagePullPolicy: Never
+          #image: us.gcr.io/cafeio-dev/cafeio-auth
+          # imagePullPolicy: Never
           env: 
             - name: JWT_KEY
               valueFrom:

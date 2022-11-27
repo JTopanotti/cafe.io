@@ -5,7 +5,9 @@ const LandingPage = ({currentUser}) => {
 }; 
 
 LandingPage.getInitialProps = async (ctx) => {
+    console.log("Yeah boy");
     const {data} = await buildClient(ctx).get("/api/users/currentuser");
+    console.log(data);
     return data;
 };
 

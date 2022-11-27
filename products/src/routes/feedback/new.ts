@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Feedback } from '../../models/feedback';
+import { Product } from '../../models/product';
 
 import { validateRequest, requireAuth, NotFoundError } from '@somethingorg/common';
 
@@ -14,9 +15,6 @@ router.post(
     body('productId')
       .notEmpty()
       .withMessage('Product Id is required'),
-    body('userId')
-      .notEmpty()
-      .withMessage('User Id is required'),
     body('feedback')
       .trim()
       .notEmpty()
@@ -24,17 +22,19 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { productId, userId, feedback }  = req.body;
+    console.log(req.body);
+    
+    const { productId, feedback }  = req.body;
+    const userId = req.currentUser?.id;
 
-    // const user = User.findById(userId);
-    // if (!user) {
-    //   throw new NotFoundError();
-    // }
+    if (!userId) {
+      throw new NotFoundError();
+    }
 
-    // const product = Product.findById(productId);
-    // if (!product) {
-    //   throw new NotFoundError();
-    // }
+    const product = Product.findById(productId);
+    if (!product) {
+      throw new NotFoundError();
+    }
 
     const feedbackModel = Feedback.build({ 
       productId, 

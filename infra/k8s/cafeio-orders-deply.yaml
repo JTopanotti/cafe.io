@@ -16,7 +16,8 @@ spec:
       containers:
         - name: cafeio-orders
           image: jontopanotti/cafeio-orders
-          imagePullPolicy: Never
+          #image: us.gcr.io/cafeio-dev/cafeio-orders
+          # imagePullPolicy: Never
           env: 
             - name: JWT_KEY
               valueFrom:
